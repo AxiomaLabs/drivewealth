@@ -53,7 +53,24 @@ class AccountSchema(Schema):
         return BaseSchema.create_object('Account', data)
 
 
+class UserSchema(BaseSchema):
+    user_id = fields.String(data_key='userID')
+    avatar_url = fields.String(data_key='avatarUrl')
+    coin_balance = fields.Decimal(data_key='coinBalance')
+    commission_rate = fields.Decimal(data_key='commissionRate')
+    country_id = fields.String(data_key='countryID')
+    display_name = fields.String(data_key='displayName')
+    email_address1 = fields.String(data_key='emailAddress1')
+    email_address = fields.String(data_key='emailAddress')
+    first_name = fields.String(data_key='firstName')
+    language_id = fields.String(data_key='languageID')
+    last_name = fields.String(data_key='lastName')
+    referral_code = fields.String(data_key='referralCode')
+    username = fields.String(data_key='username')
+
+
 class SessionSchema(BaseSchema):
     session_key = fields.String(data_key='sessionKey')
     user_id = fields.UUID(data_key='userID')
+    user = fields.Nested(UserSchema, many=True)
     accounts = fields.Nested(AccountSchema, many=True)

@@ -28,9 +28,9 @@ class Api(object):
     def create_session(
             self, username, password, os_type='Linux', os_version='Linux',
             screen_resolution='1920x1080', ip_address='127.0.0.1'):
-        '''
+        """
         Create a user session by logging in with a valid username and password.
-        '''
+        """
         params = {
             'username': username,
             'password': password,
@@ -43,19 +43,27 @@ class Api(object):
             'ipAddress': ip_address,
         }
 
-        res = self.drive_wealth.userSessions.POST(data=json.dumps(params))
-        session = create_object_from_json_response('Session', res)
+        # Get user's session
+        response = self.drive_wealth.userSessions.POST(data=json.dumps(params))
+        session = create_object_from_json_response('Session', response)
         self.session_key = session.session_key
         self.user_id = session.user_id
         self.accounts = session.accounts
+
+    def get_user_information(self):
+        """
+        Get user's information
+        """
+        response = self.drive_wealth.users.GET(self.user_id)
+        return create_object_from_json_response('User', response)
 
     def heartbeat(self):
         params = {
             'action': 'heartbeat',
         }
-        res = self.drive_wealth.userSessions(
+        response = self.drive_wealth.userSessions(
             self.session_key).PUT(params=params)
-        res.raise_for_status()
+        response.raise_for_status()
 
     def logout(self):
         self.drive_wealth.userSessions(self.session_key).DELETE()
