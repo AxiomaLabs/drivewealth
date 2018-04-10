@@ -35,7 +35,8 @@ class PositionSchema(Schema):
 
 
 class AccountSchema(Schema):
-    id = fields.String(data_key='accountID')
+    account_id = fields.String(data_key='accountID')
+    nickname = fields.String()
     currency_id = fields.String(data_key='currencyID')
     cash_available_for_withdrawal = fields.Decimal(
         data_key='rtCashAvailForWith')
