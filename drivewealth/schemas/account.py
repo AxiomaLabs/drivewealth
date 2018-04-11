@@ -36,6 +36,7 @@ class PositionSchema(Schema):
 
 class AccountSchema(Schema):
     account_id = fields.String(data_key='accountID')
+    account_number = fields.String(data_key='accountNo')
     nickname = fields.String()
     currency_id = fields.String(data_key='currencyID')
     cash_available_for_withdrawal = fields.Decimal(
@@ -43,11 +44,22 @@ class AccountSchema(Schema):
     cash_available_for_trading = fields.Decimal(
         data_key='rtCashAvailForTrading')
     status = fields.Integer()
-    positions = fields.Nested(PositionSchema, many=True)
-    orders = fields.Nested(OrderSchema, many=True)
     type = fields.Integer(data_key='accountType')
     cash = fields.Decimal()
-    account_number = fields.String(data_key='accountNo')
+    default_goal_id = fields.UUID(data_key='defaultGoalID')
+    free_trade_balance = fields.Decimal(data_key='freeTradeBalance')
+    good_faith_violations = fields.Decimal(data_key='goodFaithViolations')
+    ib_id = fields.UUID(data_key='ibID')
+    interest_free = fields.Boolean(data_key='interestFree')
+    margin = fields.Decimal(data_key='margin')
+    opened_when = fields.String(data_key='openedWhen')
+    pattern_day_trades = fields.Decimal(data_key='patternDayTrades')
+    status = fields.Decimal(data_key='status')
+    trading_type = fields.String(data_key='tradingType')
+    updated_when = fields.String(data_key='updatedWhen')
+    created_when = fields.String(data_key='createdWhen')
+    positions = fields.Nested(PositionSchema, many=True)
+    orders = fields.Nested(OrderSchema, many=True)
 
     @post_load()
     def post_load(self, data):
