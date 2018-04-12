@@ -1,26 +1,7 @@
 from marshmallow import fields, post_load, Schema
 
 from .base import BaseSchema
-
-
-class OrderSchema(Schema):
-    order_id = fields.UUID(data_key='orderID')
-    commission = fields.Decimal()
-    order_number = fields.String(data_key='orderNo')
-    order_quantity = fields.Decimal(data_key='orderQty')
-    order_status = fields.String(data_key='ordStatus')
-    price = fields.Decimal()
-    limit_price = fields.Decimal(data_key='limitPrice')
-    resting_order_expires = fields.DateTime(
-        data_key='isoTimeRestingOrderExpires')
-    amount_cash = fields.Decimal(data_key='amountCash')
-    rate_ask = fields.Decimal(data_key='rateAsk')
-    rate_bid = fields.Decimal(data_key='rateBid')
-    instrument_id = fields.UUID(data_key='instrumentID')
-
-    @post_load()
-    def post_load(self, data):
-        return BaseSchema.create_object('Order', data)
+from .order import OrderSchema
 
 
 class PositionSchema(Schema):

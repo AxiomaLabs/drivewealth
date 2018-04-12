@@ -56,3 +56,12 @@ Uso
 >> dw = drivewealth.Api(username='username', password='password')
 >> dw.search_instruments(symbol='symbol', name='name', tag='tag')
 ```
+
+ * Obtener el estatus de una orden.
+    * @ Params:
+        - order_id
+```
+>> import drivewealth
+>> dw = drivewealth.Api(username='username', password='password')
+>> dw.get_order_status(order_id='order_id')
+```

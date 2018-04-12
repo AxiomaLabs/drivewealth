@@ -45,17 +45,17 @@ def _get_schema_class(object_name):
     '''
     # Key is the name of the object, value is the schema class
     from .account import (
-        OrderSchema, PositionSchema, AccountSchema, SessionSchema,
-        UserSchema)
+        PositionSchema, AccountSchema, SessionSchema, UserSchema)
+    from .order import OrderSchema
     from .instrument import InstrumentSchema
 
     schema_dict = {
+        'Account': AccountSchema,
+        'Instrument': InstrumentSchema,
         'Order': OrderSchema,
         'Position': PositionSchema,
         'Session': SessionSchema,
-        'Account': AccountSchema,
         'User': UserSchema,
-        'Instrument': InstrumentSchema,
     }
 
     schema_class = schema_dict.get(object_name)

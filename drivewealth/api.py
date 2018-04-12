@@ -3,9 +3,13 @@ from hammock import Hammock as DriveWealth
 from services.instrument import InstrumentApiMixin
 from services.user import UserApiMixin
 from services.session import SessionApiMixin
+from services.order import OrderApiMixin
 
 
-class Api(SessionApiMixin, UserApiMixin, InstrumentApiMixin):
+class Api(SessionApiMixin, UserApiMixin, InstrumentApiMixin, OrderApiMixin):
+    """
+    Manage all the available services.
+    """
     API_BASE_URL = 'https://api.drivewealth.io/v1'
 
     def __init__(self, username, password, api_base_url=API_BASE_URL):
