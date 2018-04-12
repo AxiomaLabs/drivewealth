@@ -11,3 +11,5 @@ class InstrumentSchema(BaseSchema):
     trade_status = fields.Integer(data_key='tradeStatus')
     long_only = fields.Boolean(data_key='longOnly')
     prior_close = fields.Decimal(data_key='priorClose')
+    rate_ask = fields.Decimal(data_key='rateAsk')
+    rate_bid = fields.Decimal(data_key='rateBid')

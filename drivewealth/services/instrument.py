@@ -16,6 +16,39 @@ class InstrumentApiMixin:
             name - String
             tag - String
         @Return list of instruments.
+            instrumentID
+            name
+            category
+            currencyID
+            exchangeID
+            limitStatus
+            instrumentTypeID
+            isLongOnly
+            marginCurrencyID
+            orderSizeMax
+            orderSizeMin
+            orderSizeStep
+            rateAsk
+            rateBid
+            ratePrecision
+            symbol
+            tags - List
+            tradeStatus
+            tradingHours
+            uom
+            urlImage
+            urlInvestor
+            chaikinPgr
+            sector
+            priorClose
+            nameLower
+            underlyingID
+            marketState
+            minTic
+            pipMultiplier
+            tickerSymbol
+            rebateSpread
+            longOnly
         """
         params = {
             'symbol': symbol,
@@ -31,6 +64,41 @@ class InstrumentApiMixin:
         """
         Gets a particular instrument by instrument id.
         Returns an instrument or 404 if not found.
+        @Params
+            instrument_id - UUID
+        @Return
+            instrumentID
+            name
+            currencyID
+            description
+            exchangeID
+            limitStatus
+            instrumentTypeID
+            isLongOnly
+            marginCurrencyID
+            orderSizeMax
+            orderSizeMin
+            orderSizeStep
+            rateAsk
+            rateBid
+            ratePrecision
+            symbol
+            tags - List
+            tradeStatus
+            tradingHours
+            uom
+            urlImage
+            urlInvestor
+            sector
+            priorClose
+            nameLower
+            underlyingID
+            marketState
+            minTic
+            pipMultiplier
+            tickerSymbol
+            rebateSpread
+            longOnly
         """
         params = {
             'options': 'F',  # get the fundamental data
@@ -50,8 +118,34 @@ class InstrumentApiMixin:
         Get a list of instruments
         @Params
             trade_status: -1 all, 0 Inactive, 1 Active, 2 Close Only
-        @Return:
-            Instrument Object
+        @Return list of instruments
+            instrumentID
+            name
+            currencyID
+            exchangeID
+            limitStatus
+            instrumentTypeID
+            isLongOnly
+            marginCurrencyID
+            orderSizeMax
+            orderSizeMin
+            orderSizeStep
+            ratePrecision
+            symbol
+            tags - List
+            tradeStatus
+            tradingHours
+            uom
+            urlInvestor
+            chaikinPgr
+            priorClose
+            nameLower
+            underlyingID
+            marketState
+            minTic
+            pipMultiplier
+            rebateSpread
+            longOnly
         """
         params = {'tradeStatus': trade_status}
         response = self.drive_wealth.instruments().GET(params=params)
