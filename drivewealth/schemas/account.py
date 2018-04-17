@@ -15,6 +15,29 @@ class PositionSchema(Schema):
         return BaseSchema.create_object('Position', data)
 
 
+class PerformanceSchema(Schema):
+    realized_day_pl = fields.Decimal(data_key="realizedDayPL")
+    unrealized_day_pl = fields.Decimal(data_key="unrealizedDayPL")
+    cum_realized_pl = fields.Decimal(data_key="cumRealizedPL")
+    date = fields.String(data_key="date")
+    equity = fields.Decimal(data_key="equity")
+    cash = fields.Decimal(data_key="cash")
+    deposits = fields.Decimal(data_key="deposits")
+    withdrawals = fields.Decimal(data_key="withdrawals")
+    fees = fields.Decimal(data_key="fees")
+
+    @post_load()
+    def post_load(self, data):
+        return BaseSchema.create_object('Performance', data)
+
+
+class AccountPerformanceSchema(BaseSchema):
+    account_id = fields.String(data_key='accountID')
+    account_number = fields.String(data_key='accountNo')
+    last_updated = fields.String(data_key='lastUpdated')
+    performance = fields.Nested(PerformanceSchema, many=True)
+
+
 class AccountSchema(Schema):
     account_id = fields.String(data_key='accountID')
     account_number = fields.String(data_key='accountNo')

@@ -65,3 +65,13 @@ Uso
 >> dw = drivewealth.Api(username='username', password='password')
 >> dw.get_order_status(order_id='order_id')
 ```
+
+* Obtener Performance de una cuenta
+    * @Params:
+      - user_id
+      - account_id
+```
+>> import drivewealth
+>> dw = drivewealth.Api(username='username', password='password')
+>> dw.get_account_performance(user_id='user_id', account_id='account_id')
+```
