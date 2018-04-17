@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='drivewealth',
-    version='1.0',
+    version='0.0.1dev0',
     description='Python wrapper around the DriveWealth API',
     author='Misael G.',
     author_email='hi@misalabs.com',
