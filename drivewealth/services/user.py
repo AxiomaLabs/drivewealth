@@ -17,7 +17,6 @@ class UserApiMixin:
         response = self.drive_wealth.users(self.user_id).GET()
         return create_object_from_json_response('User', response)
 
-
     def get_account_performance(self, user_id, account_id):
         """
         Provides daily realized and unrealized PL for a specific account
