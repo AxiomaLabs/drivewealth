@@ -47,7 +47,7 @@ def _get_schema_class(object_name):
     from .account import (
         PositionSchema, AccountSchema, AccountPerformanceSchema,
         PerformanceSchema, SessionSchema, UserSchema)
-    from .order import OrderSchema
+    from .order import OrderSchema, MarketOrderSchema
     from .instrument import InstrumentSchema
 
     schema_dict = {
@@ -58,6 +58,7 @@ def _get_schema_class(object_name):
         'Position': PositionSchema,
         'Performance': PerformanceSchema,
         'Session': SessionSchema,
+        'MarketOrder': MarketOrderSchema,
         'User': UserSchema,
     }
 

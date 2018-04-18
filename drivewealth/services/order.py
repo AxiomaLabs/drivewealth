@@ -1,3 +1,5 @@
+import json
+
 from requests.exceptions import HTTPError
 
 from .exceptions import OrderNotFoundError
@@ -50,3 +52,43 @@ class OrderApiMixin:
             return create_object_from_json_response('Order', response)
         except HTTPError, e:
             raise OrderNotFoundError(e, order_id)
+
+    def create_market_order(
+            self, instrument_id, account_id, account_number, user_id,
+            side, order_quantity, amount_cash, account_type='2'):
+        """
+        Add a new market order.
+        @Params
+            instrument_id
+            account_id
+            account_number
+            user_id
+            account_type
+            ord_type
+            side
+            order_quantity
+            amount_cash
+        @return
+            orderID
+            instrumentID
+            leavesQty
+            ordType
+            side
+            limitPrice
+            timeInForce
+            expireTimestamp
+            statusPath
+        """
+        params = {
+            'instrumentID': instrument_id,
+            'accountID': account_id,
+            'accountNo': account_number,
+            'userID': user_id,
+            'accountType': account_type,
+            'ordType': "1",
+            'side': side,
+            'orderQty': order_quantity,
+            'amountCash': amount_cash,
+        }
+        response = self.drive_wealth.orders(data=json.dumps(params)).POST()
+        return create_object_from_json_response('MarketOrder', response)

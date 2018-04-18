@@ -21,3 +21,15 @@ class OrderSchema(Schema):
     @post_load()
     def post_load(self, data):
         return BaseSchema.create_object('Order', data)
+
+
+class MarketOrderSchema(Schema):
+    order_id = fields.String(load_from='orderID')
+    instrument_id = fields.String(load_from='instrumentID')
+    leaves_quantity = fields.String(load_from='leavesQty')
+    ord_type = fields.String(load_from='ordType')
+    side = fields.String(load_from='side')
+    limit_price = fields.String(load_from='limitPrice')
+    time_in_force = fields.String(load_from='timeInForce')
+    expire_timestamp = fields.String(load_from='expireTimestamp')
+    status_path = fields.String(load_from='statusPath')
